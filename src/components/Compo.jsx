@@ -1,19 +1,65 @@
-import React, { useState, useEffect } from 'react'
-import { Grid2 as Grid, Box } from '@mui/material'
-//import { keyframes } from '@mui/material'
-
+import React from 'react'
+import {
+    Box,
+    Container,
+    Typography,
+    Button,
+    AppBar,
+    Toolbar,
+    Grid
+} from '@mui/material'
 
 import bg1 from '../assets/banner1.jpg'
 
-
-
-const FirstPart = () => {
-    
-
+const FlixPrimeLanding = () => {
     return (
-
-        <>
-           
+        <Box sx={{
+            height: '100vh',
+            position: 'relative',
+            overflow: 'hidden'
+        }}>
+            {/* Navbar */}
+            <AppBar
+                position="absolute"
+                color="transparent"
+                elevation={0}
+                sx={{
+                    backgroundColor: 'rgba(0,0,0,0.5)',
+                    zIndex: 10
+                }}
+            >
+                <Toolbar sx={{ justifyContent: 'space-between' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Typography
+                            variant="h6"
+                            sx={{
+                                color: 'orange',
+                                fontWeight: 'bold',
+                                mr: 2
+                            }}
+                        >
+                            FLIX PRIME
+                        </Typography>
+                        <Box sx={{ display: 'flex', gap: 2 }}>
+                            <Button color="inherit">Home</Button>
+                            <Button color="inherit">Acerca</Button>
+                            <Button color="inherit">Contenido</Button>
+                            <Button color="inherit">Elige Tu País</Button>
+                        </Box>
+                    </Box>
+                    <Button
+                        variant="contained"
+                        sx={{
+                            backgroundColor: 'orange',
+                            '&:hover': {
+                                backgroundColor: 'darkorange'
+                            }
+                        }}
+                    >
+                        Contactar ventas
+                    </Button>
+                </Toolbar>
+            </AppBar>
 
             {/* Background Image */}
             <Box
@@ -109,10 +155,8 @@ const FirstPart = () => {
                     ))}
                 </Box>
             </Box>
-            
-        </>
+        </Box>
     )
 }
 
-export default FirstPart
-
+export default FlixPrimeLanding

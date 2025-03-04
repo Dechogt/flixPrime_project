@@ -1,46 +1,72 @@
-import * as React from 'react'
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
-import MenuIcon from '@mui/icons-material/Menu'
 
-export default function ButtonAppBar() {
+import React from 'react';
+import { AppBar, Toolbar, Typography, Button, IconButton, Box } from '@mui/material';
+//import MenuIcon from '@mui/icons-material/Menu';
+
+const NavBar = () => {
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
-                <Toolbar>
-                    
-                    <Typography variant="h6"
-                                component="div" 
-                                sx={{ flexGrow: 1 }}>
-                        FLIX 
-                    </Typography>
-                    <Typography variant="h6"
-                    sx={{  
-                        textAlign: 'left',
-                    }}
-                    >
-                        PRIME 
-                    </Typography>
-                    <Button color="inherit">Login</Button>
+        <Box
+            sx={{
+                flexGrow: 1,
+                height: '100vh',
+                position: 'relative',
+                overflow: 'hidden'
+            }}
 
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
+        >
+            <AppBar
+                position="absolute"
+                color="transparent"
+                elevation={0}
+                sx={{
+                    backgroundColor: 'rgba(0,0,0,0.5)',
+                    zIndex: 10
+                }}
+
+            >
+
+
+                <Toolbar sx={{ justifyContent: 'space-between' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Typography
+                            variant="h6"
+                            sx={{
+                                color: 'orange',
+                                fontWeight: 'bold',
+                                mr: 2
+                            }}
+                        >
+                            FLIX PRIME
+                        </Typography>
+                        <Box sx={{ display: 'flex', gap: 2 }}>
+                            <Button color="inherit">Home</Button>
+                            <Button color="inherit">Acerca</Button>
+                            <Button color="inherit">Contenido</Button>
+                            <Button color="inherit">Elige Tu País</Button>
+                        </Box>
+                    </Box>
+                    <Button
+                        variant="contained"
+                        sx={{
+                            backgroundColor: 'orange',
+                            '&:hover': {
+                                backgroundColor: 'darkorange'
+                            }
+                        }}
                     >
-                        <MenuIcon />
-                    </IconButton>
+                        Contactar ventas
+                    </Button>
                 </Toolbar>
             </AppBar>
+
         </Box>
-    )
-}
+    );
+};
+
+export default NavBar;
+
+
+
 
 
 
