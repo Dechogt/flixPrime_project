@@ -155,6 +155,25 @@ const FlixPrimeLanding = () => {
                     ))}
                 </Box>
             </Box>
+
+            //#############################################################################
+
+            <TransitionGroup>
+                {components.map(item => {
+                    const Component = item.component;
+                    return (
+                        <CSSTransition
+                            key={item.id}
+                            timeout={500}
+                            classNames="fade"
+                        >
+                            <div>
+                                <Component />
+                            </div>
+                        </CSSTransition>
+                    );
+                })}
+            </TransitionGroup>
         </Box>
     )
 }

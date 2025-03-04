@@ -1,118 +1,63 @@
 import React, { useState, useEffect } from 'react'
 import { Grid2 as Grid, Box } from '@mui/material'
-//import { keyframes } from '@mui/material'
-
+import { keyframes } from '@mui/system'
+// import ButtonAppBar from './NavBar';
 
 import bg1 from '../assets/banner1.jpg'
+import bg2 from '../assets/banner2.jpg'
+import bg3 from '../assets/banner3.jpg'
+import bg4 from '../assets/banner4.jpg'
+import bg5 from '../assets/banner5.jpg'
 
+const images = [bg1, bg2, bg3, bg4, bg5]
 
+// Animation de fondu (fade-in/out) pour une transition fluide
+const slideLeft = keyframes`
+  0% {
+    transform: translateX(100%)
+  }
+  100% {
+    transform: translateX(-100%)
+  }
+`
 
 const FirstPart = () => {
-    
+    const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+    // Change l'image toutes les 3 secondes
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length)
+        }, 3000); // 3s
+
+        return () => clearInterval(timer); // Nettoyage à la suppression du composant
+    }, [])
 
     return (
-
         <>
-           
 
-            {/* Background Image */}
-            <Box
-                sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    backgroundImage: 'url(https://example.com/football-player-image.jpg)', // Remplacez par votre image
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    filter: 'brightness(0.7)', // Assombrit légèrement l'image
-                    zIndex: 1
-                }}
-            />
-
-            {/* Content Overlay */}
-            <Container
-                sx={{
-                    position: 'relative',
-                    zIndex: 5,
-                    height: '100%',
-                    display: 'flex',
-                    alignItems: 'center'
-                }}
-            >
-                <Grid container spacing={2}>
-                    <Grid item xs={12} md={8}>
-                        <Typography
-                            variant="body1"
-                            sx={{
-                                color: 'white',
-                                mb: 1
-                            }}
-                        >
-                            TODO POR SOLO S/19.90 AL MES
-                        </Typography>
-                        <Typography
-                            variant="h2"
-                            sx={{
-                                color: 'white',
-                                fontWeight: 'bold',
-                                mb: 3
-                            }}
-                        >
-                            Todo el fútbol mundial
-                        </Typography>
-                        <Button
-                            variant="contained"
-                            sx={{
-                                backgroundColor: 'orange',
-                                fontSize: '1.2rem',
-                                '&:hover': {
-                                    backgroundColor: 'darkorange'
-                                }
-                            }}
-                        >
-                            Pruébalo gratis
-                        </Button>
-                    </Grid>
-                </Grid>
-            </Container>
-
-            {/* Slider Indicators */}
-            <Box
-                sx={{
-                    position: 'absolute',
-                    bottom: 20,
-                    left: 0,
-                    width: '100%',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    zIndex: 10
-                }}
-            >
-                <Box
-                    sx={{
-                        display: 'flex',
-                        gap: 1
-                    }}
-                >
-                    {[...Array(5)].map((_, index) => (
-                        <Box
-                            key={index}
-                            sx={{
-                                width: 10,
-                                height: 10,
-                                borderRadius: '50%',
-                                backgroundColor: index === 0 ? 'orange' : 'white'
-                            }}
-                        />
-                    ))}
-                </Box>
-            </Box>
-            
+            <Grid container sx={{ height: '100vh', overflow: 'hidden', position: 'relative' }}>
+                {images.map((img, index) => (
+                    <Box
+                        key={index}
+                        component="img"
+                        src={img}
+                        alt="Background"
+                        sx={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            opacity: index === currentImageIndex ? 1 : 0, // Afficher uniquement l'image active
+                            animation: index === currentImageIndex ? `${slideLeft} 1s ease-in-out` : 'none',
+                        }}
+                    />
+                ))}
+            </Grid>
         </>
-    )
-}
+    );
+};
 
 export default FirstPart
-
