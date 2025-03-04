@@ -1,10 +1,11 @@
 import React from 'react'
+import FirstPart from './components/FirstPart'
 
 function App() {
   return (
-    <div>
-      
-    </div>
+    <>
+      <FirstPart />
+    </>
   )
 }
 
